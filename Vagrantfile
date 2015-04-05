@@ -31,8 +31,8 @@ WORKERS = [PHD_HOSTNAME_PREFIX+"2.localdomain", PHD_HOSTNAME_PREFIX+"3.localdoma
 #       service requires the PRTS package!
 
 # Community PivotalHD 1.1.0 - NOT USE IN MY SCRIPT 
-PHD_30 = ["AMBARI-1.7.1-87-centos6.tar", "PHD-3.0.0.0-249-centos6.tar", "PADS-1.3.0.0-12954.tar", "PHD-UTILS-1.1.0.20-centos6.tar"]
-HAWQ_AMBARI_PLUGIN=["hawq-plugin-phd-1.0-57.tar.gz"]
+PHD_30 = ["AMBARI-1.7.1-87-centos6.tar", "PHD-3.0.0.0-249-centos6.tar", "PADS-1.3.0.0-12954.tar", "PHD-UTILS-1.1.0.20-centos6.tar", "hawq-plugin-phd-1.0-57.tar.gz"]
+
 
 # Set the distribution to install
 PHD_DISTRIBUTION_TO_INSTALL = PHD_30
