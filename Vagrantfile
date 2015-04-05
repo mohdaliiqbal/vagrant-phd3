@@ -84,7 +84,41 @@ START_IP=200
   # config.vm.box = "base"
   
    
-   
+  #NOW CREATE AMBARI SERVER
+    config.vm.define AMBARI_VM_NAME do |ambari|
+      ambari.vm.box = VM_BOX
+
+      ambari.vm.provider "virtualbox" do |v|
+          v.name = AMBARI_VM_NAME 
+          v.memory = AMBARI_MEMORY_MB
+        end
+
+      ambari.vm.provider "vmware_fusion" do |v|
+          v.name= AMBARI_VM_NAME
+          v.vmx["memsize"] = AMBARI_MEMORY_MB
+      end
+
+
+      ambari.vm.hostname=AMBARI_HOSTNAME
+      ambari.vm.network :public_network, ip: "#{IP_ADDRESS_RANGE}#{START_IP}", bridge: "#{BRIDGE_INTERFACE}"
+
+      ambari.vm.provision "shell" do |s|
+          s.path ="prepare_host.sh"
+          s.args =[NUMBER_OF_CLUSTER_NODES, AMBARI_HOSTNAME, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX]
+      end
+
+
+      ambari.vm.provision "shell" do |s|
+          s.path ="ambari_install.sh"
+          s.args = PHD_30
+      end
+    
+      ambari.vm.provision "shell" do |s|
+              s.path = "hawq_plugin_install.sh"
+              s.args = [HAWQ_ORIGINAL_AMBARI_PLUGIN, OVERWRITE_HAWQ_AMBARI_PLUGIN, CUSTOM_HAWQ_AMBARI_PLUGIN_RPM]
+      end
+    end
+     
    
   # Create VM for every PHD node
   (1..NUMBER_OF_CLUSTER_NODES).each do |i|
@@ -119,40 +153,5 @@ START_IP=200
       phd_conf.vm.provision :shell, :inline => "hostname #{phd_host_name}"
     end    
   end
-
-    #NOW CREATE AMBARI SERVER
-    config.vm.define AMBARI_VM_NAME do |ambari|
-      ambari.vm.box = VM_BOX
-
-      ambari.vm.provider "virtualbox" do |v|
-          v.name = AMBARI_VM_NAME 
-          v.memory = AMBARI_MEMORY_MB
-        end
-
-      ambari.vm.provider "vmware_fusion" do |v|
-          v.name= AMBARI_VM_NAME
-          v.vmx["memsize"] = AMBARI_MEMORY_MB
-      end
-
-
-      ambari.vm.hostname=AMBARI_HOSTNAME
-      ambari.vm.network :public_network, ip: "#{IP_ADDRESS_RANGE}#{START_IP}", bridge: "#{BRIDGE_INTERFACE}"
-
-      ambari.vm.provision "shell" do |s|
-          s.path ="prepare_host.sh"
-          s.args =[NUMBER_OF_CLUSTER_NODES, AMBARI_HOSTNAME, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX]
-      end
-
-
-      ambari.vm.provision "shell" do |s|
-          s.path ="ambari_install.sh"
-          s.args = PHD_30
-      end
-    
-      ambari.vm.provision "shell" do |s|
-              s.path = "hawq_plugin_install.sh"
-              s.args = [HAWQ_ORIGINAL_AMBARI_PLUGIN, OVERWRITE_HAWQ_AMBARI_PLUGIN, CUSTOM_HAWQ_AMBARI_PLUGIN_RPM]
-      end
-    end
 
 end
