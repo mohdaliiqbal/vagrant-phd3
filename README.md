@@ -52,4 +52,4 @@ following are the default settings
 
 Once the provisioning is completed, you can visit [](http://192.168.0.200:8080/) and create the Hadoop cluster. 
 
-The project is inspired by an existing Vagrant project created by Christian Tzolov from Pivotal.
+The project is inspired by an existing [Vagrant PHD] (https://github.com/tzolov/vagrant-pivotalhd) project created by Christian Tzolov from Pivotal.
