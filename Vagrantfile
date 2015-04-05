@@ -6,8 +6,12 @@ VAGRANTFILE_API_VERSION = "2"
 require 'set'
 
 
-PHD_VM_NAME_PREFIX ="phdX"
-PHD_HOSTNAME_PREFIX="phdX"
+PHD_VM_NAME_PREFIX ="phd"
+PHD_HOSTNAME_PREFIX="phd"
+
+#You can change this one to suit your interface
+BRIDGE_INTERFACE ="en0: Wi-Fi (AirPort)"
+
 
 # Node(s) to be used as a master. Convention is: 'phd<Number>.localdomain'. Exactly One master node must be provided
 MASTER = [PHD_HOSTNAME_PREFIX+"1.localdomain"]
@@ -49,7 +53,7 @@ WORKER_PHD_MEMORY_MB = "2048"
 AMBARI_MEMORY_MB = "1024"
 
 # Amabari VM name
-AMBARI_VM_NAME = "ambari2"
+AMBARI_VM_NAME = "ambari"
 
 # Ambari VM host name
 AMBARI_HOSTNAME = "ambari.localdomain"
@@ -71,7 +75,7 @@ START_IP=200
  # Compute the total number of nodes in the cluster 	    
   NUMBER_OF_CLUSTER_NODES = (MASTER + WORKERS).uniq.size
 
-Vagrant.configure(2) do |config|
+ Vagrant.configure(2) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
@@ -81,34 +85,7 @@ Vagrant.configure(2) do |config|
   # config.vm.box = "base"
   
    
-    config.vm.define AMBARI_VM_NAME do |ambari|
-      ambari.vm.box = VM_BOX
-      
-      ambari.vm.provider "virtualbox" do |v|
-          v.name = AMBARI_VM_NAME 
-          v.memory = AMBARI_MEMORY_MB
-        end
-      
-      ambari.vm.provider "vmware_fusion" do |v|
-          v.name= AMBARI_VM_NAME
-          v.vmx["memsize"] = AMBARI_MEMORY_MB
-      end
-      
-      
-      ambari.vm.hostname=AMBARI_HOSTNAME
-      ambari.vm.network :public_network, ip: "192.168.0.200", bridge: "en0: Wi-Fi (AirPort)"
-      
-      ambari.vm.provision "shell" do |s|
-          s.path ="prepare_host.sh"
-          s.args =[NUMBER_OF_CLUSTER_NODES, AMBARI_HOSTNAME, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX]
-      end
-        
-          
-      ambari.vm.provision "shell" do |s|
-          s.path ="ambari_install.sh"
-          s.args = PHD_30
-      end
-    end
+   
    
   # Create VM for every PHD node
   (1..NUMBER_OF_CLUSTER_NODES).each do |i|
@@ -132,7 +109,7 @@ Vagrant.configure(2) do |config|
       end     	  
 
       phd_conf.vm.host_name = phd_host_name    
-      phd_conf.vm.network :public_network, ip: "192.168.0.#{i+200}", bridge: "en0: Wi-Fi (AirPort)" 
+      phd_conf.vm.network :public_network, ip: IP_ADDRESS_RANGE+"#{i+200}", bridge: "#{BRIDGE_INTERFACE}" 
 
       phd_conf.vm.provision "shell" do |s|
         s.path = "prepare_host.sh"
@@ -144,6 +121,34 @@ Vagrant.configure(2) do |config|
     end    
   end
 
-  
+    #NOW CREATE AMBARI SERVER
+    config.vm.define AMBARI_VM_NAME do |ambari|
+      ambari.vm.box = VM_BOX
+
+      ambari.vm.provider "virtualbox" do |v|
+          v.name = AMBARI_VM_NAME 
+          v.memory = AMBARI_MEMORY_MB
+        end
+
+      ambari.vm.provider "vmware_fusion" do |v|
+          v.name= AMBARI_VM_NAME
+          v.vmx["memsize"] = AMBARI_MEMORY_MB
+      end
+
+
+      ambari.vm.hostname=AMBARI_HOSTNAME
+      ambari.vm.network :public_network, ip: "#{IP_ADDRESS_RANGE}#{START_IP}", bridge: "#{BRIDGE_INTERFACE}"
+
+      ambari.vm.provision "shell" do |s|
+          s.path ="prepare_host.sh"
+          s.args =[NUMBER_OF_CLUSTER_NODES, AMBARI_HOSTNAME, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX]
+      end
+
+
+      ambari.vm.provision "shell" do |s|
+          s.path ="ambari_install.sh"
+          s.args = PHD_30
+      end
+    end
 
 end
