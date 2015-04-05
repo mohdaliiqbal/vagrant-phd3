@@ -1,4 +1,4 @@
-# vagrant-phd3
+# Vagrant PHD 3.0
 
 Vagrant based Pivotal HD cluster setup. The vagrant file and helper scripts sets up a 3 node cluster and an ambari host with all the required steps as mentioned in the Pivotal HD installation guide.
 
