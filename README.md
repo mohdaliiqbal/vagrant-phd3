@@ -42,7 +42,7 @@ following are the default settings
 - Ambari host becomes the local yum repository
 - Ambari host gets passwordless ssh access to all other nodes
 - All components from the above downloaded files are copied into yum repository inside the ambari host
-- **very important** The VMs are bridged hardcoded with Wifi network interface on a public network. Read [Vagrant Network](http://docs.vagrantup.com/v2/networking/index.html) for more details. You can change the interface to any other interface by changing `BRIDGE_INTERFACE` variable.
+- **very important** The VMs are bridged hardcoded with Wifi network interface on a public network. Read [Vagrant Network](http://docs.vagrantup.com/v2/networking/index.html) for more details. You can change the bridge to go on any other interface by changing `BRIDGE_INTERFACE` variable. Look inside Vagrantfile for more information.
 
 ###Configurations
 - Ambari server is 1GB. You can change this value by setting ```AMBARI_MEMORY_MB``` variable
