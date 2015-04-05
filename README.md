@@ -3,7 +3,7 @@
 Vagrant based Pivotal HD cluster setup. The vagrant file and helper scripts sets up a 3 node cluster and an ambari host with all the required steps as mentioned in the Pivotal HD installation guide.
 
 
-There are some pre-requise files that must be downloaded to the root vagrant directory. Following is the list of files that must be present in the same directory as the Vagrantfile. You can get some of these files from http://network.pivotal.io. Jdk and UnlimitedJCEPolicyJDK7.zip can be found in Oralce website. More details are available at http://pivotalhd.docs.pivotal.io/docs/install-ambari.html
+There are some pre-requisites files that must be downloaded to the root vagrant directory. Following is the list of files that must be present in the same directory as the Vagrantfile. You can get some of these files from http://network.pivotal.io. Jdk and UnlimitedJCEPolicyJDK7.zip can be found in Oralce website. More details are available at http://pivotalhd.docs.pivotal.io/docs/install-ambari.html
 
  - AMBARI-1.7.1-87-centos6.tar
  - PADS-1.3.0.0-12954.tar
@@ -48,7 +48,7 @@ following are the default settings
 - PHD nodes are 2GB each. You can increase this value by setting MASTER_PHD_MEMORY_MB, and WORKER_PHD_MEMORY_MB variables
 - Default IP addresses can be controlled using IP_ADDRESS_RANGE and START_IP variable. IPs are created concatinating IP_ADDRESS_RANGE+START_IP for Ambari and IP_ADDRESS_RANGE+(START_IP+Node index) for PHD nodes 
 - Default naming of VM and hostname of the nodes can be changed using PHD_VM_NAME, and PHD_HOSTNAME_PREFIX. You need to make relevant changes in WORKERS and MASTER arrays (i will fix this later).
-- Default number of nodes can be controlled by increasing entries in WORKERS array, so for e.g. you want 5 nodes then you must provide node names PHD_HOSTNAME_PREFIX+"2.localdomain", ... , PHD_HOSTNAME_PREFIX+"[b]5[/b].localdomain" 
+- Default number of nodes can be controlled by increasing entries in WORKERS array, so for e.g. you want 4 worker nodes then you must provide node names PHD_HOSTNAME_PREFIX+"2.localdomain", ... , PHD_HOSTNAME_PREFIX+"5.localdomain" 
 
 Once the provisioning is completed, you can visit http://192.168.0.200:8080/ and create the Hadoop cluster. 
 
