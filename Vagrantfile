@@ -28,7 +28,7 @@ PHD_30 = ["AMBARI-1.7.1-87-centos6.tar", "PHD-3.0.0.0-249-centos6.tar", "PADS-1.
 HAWQ_AMBARI_PLUGIN=["hawq-plugin-phd-1.0-57.tar.gz"]
 
 # Set the distribution to install
-PHD_DISTRIBUTION_TO_INSTALL = PHD_210
+PHD_DISTRIBUTION_TO_INSTALL = PHD_30
 
 # Vagrant box name
 #   bigdata/centos6.4_x86_64 - 40G disk space.
