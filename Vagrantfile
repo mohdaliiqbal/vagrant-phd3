@@ -20,22 +20,21 @@ MASTER = [PHD_HOSTNAME_PREFIX+"1.localdomain"]
 # The master node can be reused as a worker. 
 WORKERS = [PHD_HOSTNAME_PREFIX+"2.localdomain", PHD_HOSTNAME_PREFIX+"3.localdomain"]
 
-# Some commonly used PHD distributions are predefined below. Select one and assign it to PHD_DISTRIBUTION_TO_INSTALL 
-# To install different packages versions put those packages in the Vagrantfile folder and define 
-# a custom PHD_DISTRIBUTION_TO_INSTALL. For example: 
-# PHD_DISTRIBUTION_TO_INSTALL=["PCC-<your version>", "PHD-<your version>", "PADS-<your version>", "PRTS-<your version>"]
-#
-# PCC and PHD are compulsory! To disable PADS and/or PRTS use "NA" in place of package name. (e.g. ["PCC-2.1.0-460", 
-# "PHD-1.1.0.0-76", "NA", "NA"]).
-# Note: When disabling packages be aware that the 'hawq' service requires the PADS package and the 'gfxd' 
-#       service requires the PRTS package!
 
-# Community PivotalHD 1.1.0 - NOT USE IN MY SCRIPT 
-PHD_30 = ["AMBARI-1.7.1-87-centos6.tar", "PHD-3.0.0.0-249-centos6.tar", "PADS-1.3.0.0-12954.tar", "PHD-UTILS-1.1.0.20-centos6.tar", "hawq-plugin-phd-1.0-57.tar.gz"]
+#It is important that this value matches the HAWQ plugin you want to install. Default value is the one released originally
+#with PHD3.0 on March 31, 2015. Please update this value and plugin name in 
+HAWQ_ORIGINAL_AMBARI_PLUGIN="hawq-plugin-phd-1.0-57.tar.gz"
 
+# This script only supports Pivotal HD 3.0 
+# for older versions please refer to github vagrantphd project under tzolov user account
+PHD_30 = ["AMBARI-1.7.1-87-centos6.tar", "PHD-3.0.0.0-249-centos6.tar", "PADS-1.3.0.0-12954.tar", "PHD-UTILS-1.1.0.20-centos6.tar", HAWQ_ORIGINAL_AMBARI_PLUGIN]
 
-# Set the distribution to install
-PHD_DISTRIBUTION_TO_INSTALL = PHD_30
+#If you do not want to use out of the box plugin in PHD_30 components, and have an RPM of your own then you can put 
+#it in the following variable and set OVERWRITE_HAWQ_PLUGIN to 1. The RPM must be available in the root vagrant directory
+#along side the Vagrntfile
+CUSTOM_HAWQ_AMBARI_PLUGIN_RPM="hawq-plugin-1.0-57-vm_overcommit_memory_0.noarch.rpm"
+OVERWRITE_HAWQ_AMBARI_PLUGIN=1
+
 
 # Vagrant box name
 #   bigdata/centos6.4_x86_64 - 40G disk space.
@@ -148,6 +147,11 @@ START_IP=200
       ambari.vm.provision "shell" do |s|
           s.path ="ambari_install.sh"
           s.args = PHD_30
+      end
+    
+      ambari.vm.provision "shell" do |s|
+              s.path = "hawq_plugin_install.sh"
+              s.args = [HAWQ_ORIGINAL_AMBARI_PLUGIN, OVERWRITE_HAWQ_AMBARI_PLUGIN, CUSTOM_HAWQ_AMBARI_PLUGIN_RPM]
       end
     end
 
