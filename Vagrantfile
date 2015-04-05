@@ -6,12 +6,15 @@ VAGRANTFILE_API_VERSION = "2"
 require 'set'
 
 
+PHD_VM_NAME_PREFIX ="phdX"
+PHD_HOSTNAME_PREFIX="phdX"
+
 # Node(s) to be used as a master. Convention is: 'phd<Number>.localdomain'. Exactly One master node must be provided
-MASTER = ["phd1.localdomain"]
+MASTER = [PHD_HOSTNAME_PREFIX+"1.localdomain"]
 
 # Node(s) to be used as a Workers. Convention is: 'phd<Number>.localdomain'. At least one worker node is required
 # The master node can be reused as a worker. 
-WORKERS = ["phd2.localdomain", "phd3.localdomain"]
+WORKERS = [PHD_HOSTNAME_PREFIX+"2.localdomain", PHD_HOSTNAME_PREFIX+"3.localdomain"]
 
 # Some commonly used PHD distributions are predefined below. Select one and assign it to PHD_DISTRIBUTION_TO_INSTALL 
 # To install different packages versions put those packages in the Vagrantfile folder and define 
@@ -46,7 +49,7 @@ WORKER_PHD_MEMORY_MB = "2048"
 AMBARI_MEMORY_MB = "1024"
 
 # Amabari VM name
-AMBARI_VM_NAME = "ambari"
+AMBARI_VM_NAME = "ambari2"
 
 # Ambari VM host name
 AMBARI_HOSTNAME = "ambari.localdomain"
@@ -97,7 +100,7 @@ Vagrant.configure(2) do |config|
       
       ambari.vm.provision "shell" do |s|
           s.path ="prepare_host.sh"
-          s.args =[NUMBER_OF_CLUSTER_NODES, AMBARI_HOSTNAME, IP_ADDRESS_RANGE, START_IP]
+          s.args =[NUMBER_OF_CLUSTER_NODES, AMBARI_HOSTNAME, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX]
       end
         
           
@@ -110,9 +113,9 @@ Vagrant.configure(2) do |config|
   # Create VM for every PHD node
   (1..NUMBER_OF_CLUSTER_NODES).each do |i|
 
-    phd_vm_name = "phd#{i}"
+    phd_vm_name = PHD_VM_NAME_PREFIX+"#{i}"
     
-    phd_host_name = "phd#{i}.localdomain"
+    phd_host_name = PHD_HOSTNAME_PREFIX+"#{i}.localdomain"
     
     # Compute the memory
     vm_memory_mb = (MASTER.include? phd_host_name) ? MASTER_PHD_MEMORY_MB : WORKER_PHD_MEMORY_MB
@@ -133,7 +136,7 @@ Vagrant.configure(2) do |config|
 
       phd_conf.vm.provision "shell" do |s|
         s.path = "prepare_host.sh"
-        s.args = [NUMBER_OF_CLUSTER_NODES, phd_host_name, IP_ADDRESS_RANGE, START_IP]
+        s.args = [NUMBER_OF_CLUSTER_NODES, phd_host_name, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX]
       end 
 	  
       #Fix hostname FQDN
