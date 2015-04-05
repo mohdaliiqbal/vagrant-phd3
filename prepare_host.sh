@@ -8,7 +8,7 @@ PHD_HOSTNAME_PREFIX=$5
 
 yum -y install openssl
 
-yum -y install nc expect ed ntp dmidecode pciutils 
+yum -y install nc expect ed ntp dmidecode pciutils httpd createrepo
 
 #Make sure umask is 0022
 echo 'umask 022'|cat>> ~/.bashrc
