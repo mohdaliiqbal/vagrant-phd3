@@ -5,13 +5,13 @@ Vagrant based Pivotal HD cluster setup. The vagrant file and helper scripts sets
 
 There are some pre-requise files that must be downloaded to the root vagrant directory. Following is the list of files that must be present in the same directory as the Vagrantfile. You can get some of these files from http://network.pivotal.io. Jdk and UnlimitedJCEPolicyJDK7.zip can be found in Oralce website. More details are available at http://pivotalhd.docs.pivotal.io/docs/install-ambari.html
 
-  AMBARI-1.7.1-87-centos6.tar
-	PADS-1.3.0.0-12954.tar
-	PHD-3.0.0.0-249-centos6.tar
-	PHD-UTILS-1.1.0.20-centos6.tar
-	UnlimitedJCEPolicyJDK7.zip
-	hawq-plugin-phd-1.0-57.tar.gz
-	jdk-7u67-linux-x64.gz
+ - AMBARI-1.7.1-87-centos6.tar
+ - PADS-1.3.0.0-12954.tar
+ - PHD-3.0.0.0-249-centos6.tar
+ - PHD-UTILS-1.1.0.20-centos6.tar
+ - UnlimitedJCEPolicyJDK7.zip
+ - hawq-plugin-phd-1.0-57.tar.gz
+ - jdk-7u67-linux-x64.gz
 
 This is a work in progress so expect details to follow.
 
