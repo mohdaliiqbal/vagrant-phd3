@@ -55,7 +55,7 @@ following are the default settings
 Once the provisioning is completed, you can visit [Ambari Server UI](http://192.168.0.200:8080/) and create the Hadoop cluster. 
 
 ###Some tips 
-- Since this is supposed to be running in a Laptop for development purposes, keep your cluster footprint to minimum no. of components. If you're not going to benefit from any component e.g. *Tez* then don't include them when you're creating a cluster. 
+- Since this is supposed to be running in a Laptop for development purposes, keep your cluster footprint to minimum no. of components. If you're not going to benefit from any of the OOB components e.g. *Tez*, *Nagios* then don't include them when you're creating a cluster in Ambari. 
 - To make a psuedo-singlenode PHD VM, tweek settings to have only `MASTER` array and keep `WORKERS` array empty. It should work, I have not tried it. Then from Ambari VM use only MASTER to install all required components
 - Keep your Zookeeper instances to minimum.
 
