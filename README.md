@@ -26,7 +26,7 @@ You directory structure should look like
 |- prepare-host.sh
 |- generate-rsa-keys.sh
 
-#Create the VMs
+###Create the VMs
 vagrant up 
 
 This will create 4 VMs 
