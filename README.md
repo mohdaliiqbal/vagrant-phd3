@@ -1,6 +1,6 @@
 # Vagrant PHD 3.0
 
-Vagrant based Pivotal HD cluster setup. The vagrant file and helper scripts sets up a 3 node cluster and an ambari host with all the required steps as mentioned in the Pivotal HD installation guide.
+Vagrant based Pivotal HD cluster setup. The vagrant file and helper scripts sets up a 3 node cluster and an ambari host with all the required steps as mentioned in the Pivotal HD installation guide. The project is inspired by an existing [Vagrant PHD] (https://github.com/tzolov/vagrant-pivotalhd) project created by Christian Tzolov from Pivotal.
 
 
 There are some pre-requisites files that must be downloaded to the root vagrant directory. Following is the list of files that must be present in the same directory as the Vagrantfile. You can get some of these files from http://network.pivotal.io. Jdk and UnlimitedJCEPolicyJDK7.zip can be found in Oralce website. More details are available at http://pivotalhd.docs.pivotal.io/docs/install-ambari.html
@@ -15,8 +15,6 @@ There are some pre-requisites files that must be downloaded to the root vagrant 
 
 Currently I have not installed HAWQ component using this setup. 
 
-Once you've downloaded the above files and cloned the git the project to the same directory, you can just run 
-
 You directory structure should look like
 ```
 /vagrant-phd3
@@ -27,6 +25,8 @@ You directory structure should look like
 |- generate-rsa-keys.sh
 ````
 ###Create the VMs
+Once you've downloaded the above files and cloned the git the project to the same directory, you can just run following command from within the directory
+
 `vagrant up` 
 
 This will create 4 VMs 
@@ -43,6 +43,7 @@ following are the default settings
 - Ambari host gets passwordless ssh access to all other nodes
 - All components from the above downloaded files are copied into yum repository inside the ambari host
 - **very important** The VMs are bridged hardcoded with Wifi network interface on a public network. Read [Vagrant Network](http://docs.vagrantup.com/v2/networking/index.html) for more details. You can change the bridge to go on any other interface by changing `BRIDGE_INTERFACE` variable. Look inside Vagrantfile for more information.
+- All nodes are bridged to public as some YUM updates were needed and they need to have access to the internet. You can use NAT, just make sure your nodes have internet access through the host.
 
 ###Configurations
 - Ambari server is 1GB. You can change this value by setting ```AMBARI_MEMORY_MB``` variable
@@ -53,4 +54,13 @@ following are the default settings
 
 Once the provisioning is completed, you can visit [Ambari Server UI](http://192.168.0.200:8080/) and create the Hadoop cluster. 
 
-The project is inspired by an existing [Vagrant PHD] (https://github.com/tzolov/vagrant-pivotalhd) project created by Christian Tzolov from Pivotal.
+###Some tips 
+- Since this is supposed to be running in a Laptop for development purposes, keep your cluster footprint to minimum no. of components. If you're not going to benefit from any component e.g. *Tez* then don't include them when you're creating a cluster. 
+- To make a psuedo-singlenode PHD VM, tweek settings to have only `MASTER` array and keep `WORKERS` array empty. It should work, I have not tried it. Then from Ambari VM use only MASTER to install all required components
+- Keep your Zookeeper instances to minimum.
+
+###Things to follow
+- Add HAWQ plugin to Ambari and have it ready within Ambari to provision HAWQ cluster.
+- Add Optional Spring XD VMs
+- Add Optional GemfireXD VMs
+- Create the cluster without Ambari
