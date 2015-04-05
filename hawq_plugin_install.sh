@@ -27,12 +27,12 @@ original_filename="hawq-plugin-$version_no.noarch.rpm"
 #NOW Overwrite if required
 if [[ $OVERWRITE_HAWQ_PLUGIN == 1 ]]
 then
-    echo "Overwriting $original_filename plugin with "$HAWQ_PLUGIN_RPM
+    echo "Overwriting /staging/$filename/$original_filename plugin with "$HAWQ_PLUGIN_RPM
     yes | cp /vagrant/$HAWQ_PLUGIN_RPM /staging/$filename/$original_filename
 fi
 
 
-rpm -ivh $original_filename
+rpm -ivh /staging/$filename/$original_filename
 
 ambari-server restart
 
