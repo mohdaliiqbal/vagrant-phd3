@@ -51,6 +51,6 @@ following are the default settings
 - Default naming of VM and hostname of the nodes can be changed using `PHD_VM_NAME`, and `PHD_HOSTNAME_PREFIX`. You need to make relevant changes in `WORKERS` and `MASTER` arrays (i will fix this later).
 - Default number of nodes can be controlled by increasing entries in `WORKERS` array, so for e.g. you want 4 worker nodes then you must provide node names `PHD_HOSTNAME_PREFIX+"2.localdomain"`, ... , `PHD_HOSTNAME_PREFIX+"5.localdomain"`
 
-Once the provisioning is completed, you can visit [](http://192.168.0.200:8080/) and create the Hadoop cluster. 
+Once the provisioning is completed, you can visit [Local Ambari](http://192.168.0.200:8080/) and create the Hadoop cluster. 
 
 The project is inspired by an existing [Vagrant PHD] (https://github.com/tzolov/vagrant-pivotalhd) project created by Christian Tzolov from Pivotal.
