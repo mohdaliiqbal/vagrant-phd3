@@ -36,7 +36,7 @@ for i in $(eval echo {1..$NUMBER_OF_CLUSTER_NODES}); do
    HOST_IP=$IP_ADDRESS_RANGE$(($START_IP+$i))
    
    echo $HOST_IP $PHD_HOSTNAME_PREFIX$i.localdomain PHD_HOSTNAME_PREFIX$i >> /etc/hosts 
-   
+
    #this mess is to avoid the host authenticity prompt when passwordless ssh connects to a host. making ambari happy.
    ssh-keygen -R $PHD_HOSTNAME_PREFIX$i.localdomain
    ssh-keygen -R $HOST_IP
@@ -46,6 +46,7 @@ for i in $(eval echo {1..$NUMBER_OF_CLUSTER_NODES}); do
    ssh-keyscan -H $PHD_HOSTNAME_PREFIX$i.localdomain >> ~/.ssh/known_hosts
 
 done
+
 
 
 #NOW Copy the keys for password less SSH
