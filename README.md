@@ -38,13 +38,13 @@ This will create 4 VMs
 
 ###Default Settings
 following are the default settings
-- Default IP 192.168.0.200 for ambari - hostname ambari.localdomain
-- Default IP 192.168.0.201 ... 192.168.0.203 for PHD nodes - phd1.localdomain, phd2.localdomain, phd3.localdomain respectively
+- Default IP 10.211.55.200 for ambari - hostname ambari.localdomain
+- Default IP 10.211.55.201 ... 10.211.55.203 for PHD nodes - phd1.localdomain, phd2.localdomain, phd3.localdomain respectively
 - Ambari host becomes the local yum repository
 - Ambari host gets passwordless ssh access to all other nodes
 - All components from the above downloaded files are copied into yum repository inside the ambari host
-- **very important** The VMs are bridged hardcoded with Wifi network interface on a public network. Read [Vagrant Network](http://docs.vagrantup.com/v2/networking/index.html) for more details. You can change the bridge to go on any other interface by changing `BRIDGE_INTERFACE` variable. Look inside Vagrantfile for more information.
-- All nodes are bridged to public as some YUM updates were needed and they need to have access to the internet. You can use NAT, just make sure your nodes have internet access through the host.
+- All nodes are on private network
+- All nodes are NAT to public as some YUM updates were needed and they need to have access to the internet. 
 
 ###Configurations
 - Ambari server is 1GB. You can change this value by setting ```AMBARI_MEMORY_MB``` variable
@@ -53,7 +53,7 @@ following are the default settings
 - Default naming of VM and hostname of the nodes can be changed using `PHD_VM_NAME`, and `PHD_HOSTNAME_PREFIX`. You need to make relevant changes in `WORKERS` and `MASTER` arrays (i will fix this later).
 - Default number of nodes can be controlled by increasing entries in `WORKERS` array, so for e.g. you want 4 worker nodes then you must provide node names `PHD_HOSTNAME_PREFIX+"2.localdomain"`, ... , `PHD_HOSTNAME_PREFIX+"5.localdomain"`
 
-Once the provisioning is completed, you can visit [Ambari Server UI](http://192.168.0.200:8080/) and create the Hadoop cluster. 
+Once the provisioning is completed, you can visit [Ambari Server UI](http://10.211.55.200:8080/) and create the Hadoop cluster. 
 
 ###URLs that you will need for Ambari
 ```
