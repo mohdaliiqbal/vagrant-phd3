@@ -69,7 +69,4 @@ http://ambari.localdomain/PHD-UTILS-1.1.0.20
 - To make a psuedo-singlenode PHD VM, tweek settings to have only `MASTER` array and keep `WORKERS` array empty. It should work, I have not tried it. Then from Ambari VM use only MASTER to install all required components
 - Keep your Zookeeper instances to minimum.
 
-###Things to follow
-- Add Optional Spring XD VMs
-- Add Optional GemfireXD VMs
-- Create the cluster without Ambari
+
