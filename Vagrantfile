@@ -10,7 +10,7 @@ PHD_VM_NAME_PREFIX ="phd"
 PHD_HOSTNAME_PREFIX="phd"
 
 #You can change this one to suit your interface
-BRIDGE_INTERFACE ="en0: Wi-Fi (AirPort)"
+#BRIDGE_INTERFACE ="en0: Wi-Fi (AirPort)"
 
 
 # Node(s) to be used as a master. Convention is: 'phd<Number>.localdomain'. Exactly One master node must be provided
@@ -100,8 +100,10 @@ START_IP=200
 
 
       ambari.vm.hostname=AMBARI_HOSTNAME
-      ambari.vm.network :public_network, ip: "#{IP_ADDRESS_RANGE}#{START_IP}", bridge: "#{BRIDGE_INTERFACE}"
-
+      #ambari.vm.network :public_network, ip: "#{IP_ADDRESS_RANGE}#{START_IP}", bridge: "#{BRIDGE_INTERFACE}"
+      ambari.vm.network :private_network, ip: IP_ADDRESS_RANGE+"#{START_IP}"
+      ambari.vm.network :forwarded_port, guest: 5443, host: 5443
+      
       ambari.vm.provision "shell" do |s|
           s.path ="prepare_host.sh"
           s.args =[NUMBER_OF_CLUSTER_NODES, AMBARI_HOSTNAME, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX]
@@ -142,8 +144,8 @@ START_IP=200
       end     	  
 
       phd_conf.vm.host_name = phd_host_name    
-      phd_conf.vm.network :public_network, ip: IP_ADDRESS_RANGE+"#{i+200}", bridge: "#{BRIDGE_INTERFACE}" 
-
+      phd_conf.vm.network :private_network, ip: IP_ADDRESS_RANGE+"#{i+START_IP}"
+     
       phd_conf.vm.provision "shell" do |s|
         s.path = "prepare_host.sh"
         s.args = [NUMBER_OF_CLUSTER_NODES, phd_host_name, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX]
