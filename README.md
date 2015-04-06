@@ -70,7 +70,6 @@ http://ambari.localdomain/PHD-UTILS-1.1.0.20
 - Keep your Zookeeper instances to minimum.
 
 ###Things to follow
-- Add HAWQ plugin to Ambari and have it ready within Ambari to provision HAWQ cluster.
 - Add Optional Spring XD VMs
 - Add Optional GemfireXD VMs
 - Create the cluster without Ambari
