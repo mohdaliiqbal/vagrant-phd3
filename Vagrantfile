@@ -59,7 +59,7 @@ AMBARI_HOSTNAME = "ambari.localdomain"
 
 #You can change this range to whatever you want. it could be 10.55.1.
 #This will be used as first 24 bit of ip 
-IP_ADDRESS_RANGE="192.168.0."
+IP_ADDRESS_RANGE="10.211.55."
 
 #this number specify the starting ip of the cluster if you specify it 200 then 
 #first vm (ambari vm) will get ip address range (192.168.0.) concatinated with 200 i.e. 192.168.0.200
