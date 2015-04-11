@@ -43,8 +43,9 @@ following are the default settings
 - Ambari host becomes the local yum repository
 - Ambari host gets passwordless ssh access to all other nodes
 - All components from the above downloaded files are copied into yum repository inside the ambari host
-- All nodes are on private network
-- All nodes are NAT to public as some YUM updates were needed and they need to have access to the internet. 
+- Ambari server and agents are installed and yum repositories are updated in all hosts.
+- PHD cluster is created by first creating a blueprint from clusterblueprint.json file and then a cluster is created using hosts mapping given in clustertemplate.json. You can modify these files to change component mapping or drop component as per your requirement. All of this is done when final node of the cluster is created successfully.
+- All nodes are on private network with NAT to host and they need to have access to the internet. 
 
 ###Configurations
 - Ambari server is 1GB. You can change this value by setting ```AMBARI_MEMORY_MB``` variable
