@@ -68,20 +68,26 @@ http://ambari.localdomain/PHD-UTILS-1.1.0.20
 ```
 
 ###Tips & Diagonostics 
-- Since this is supposed to be running in a Laptop for development purposes, keep your cluster footprint to minimum no. of components. If you're not going to benefit from any of the OOB components e.g. *HBase*, *Nagios* then don't include them when you're creating a cluster in Ambari. 
-- If you see services failing to start and the problem is JVM out of memory then you may need to set vm.overcommit_memory = 0 in sysctl.conf. Following are the steps to change this configuration. Following steps need to be repeated for every node in the cluster (PHD1, PHD2, PHD3)
+Since this is supposed to be running in a Laptop for development purposes, keep your cluster footprint to minimum no. of components. If you're not going to benefit from any of the OOB components e.g. *HBase*, *Nagios* then don't include them when you're creating a cluster in Ambari. 
+
+If you see services failing to start and the problem is JVM out of memory then you may need to set vm.overcommit_memory = 0 in sysctl.conf. Following are the steps to change this configuration. Following steps need to be repeated for every node in the cluster (PHD1, PHD2, PHD3)
 
 ```
 vagrant ssh phd1
 sudo vi /etc/sysctl.conf
 ```
-Change the line ```vm.overcommit_memory = 2``` to ```vm.overcommit_memory = 0```
+- Change the line ```vm.overcommit_memory = 2``` to ```vm.overcommit_memory = 0```
 
-Save the file and run the following command
+- Save the file and run the following command
 
 ```
 sudo sysctl -p
 ```
 
 
+###Youtube Vdo
+You can watch the VDO for this project from the link below
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=ZSjygc7V2dM
+" target="_blank"><img src="http://img.youtube.com/vi/ZSjygc7V2dM/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
