@@ -11,7 +11,7 @@ There are some pre-requisites files that must be downloaded to the root vagrant 
  - [PHD-UTILS-1.1.0.20-centos6.tar](https://network.pivotal.io/products/pivotal-hd)
  - [UnlimitedJCEPolicyJDK7.zip](http://www.oracle.com/technetwork/jp/java/javase/downloads/jce-7-download-432124.html)
  - [hawq-plugin-phd-1.0-57.tar.gz](https://network.pivotal.io/products/pivotal-hawq)
- - [jdk-7u67-linux-x64.gz] (http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u67-oth-JPR)
+ - [jdk-7u67-linux-x64.tar.gz] (http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u67-oth-JPR)
  -
 
 The creation of cluster can be controlled using a variable in Vagrantfile called `CREATE_CLUSTER`, set its value to 0 or anything other than 1.
@@ -24,7 +24,10 @@ You directory structure should look like
 |- ambari-install.sh
 |- prepare-host.sh
 |- generate-rsa-keys.sh
-````
+|- hawq_plugin_install.sh
+|- clustertemplate.json
+|- clusterblueprint.json
+```
 ###Create the VMs
 Once you've downloaded the above files and cloned the git the project to the same directory, you can just run following command from within the directory
 
