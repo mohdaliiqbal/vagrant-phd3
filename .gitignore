@@ -1,1 +1,8 @@
 /.vagrant
+/*.tar
+/*.zip
+/*.gz
+/*.rpm
+/hawq-plugin-phd-1.0-57
+/tmp
+/*.gppkg
