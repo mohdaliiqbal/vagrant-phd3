@@ -14,7 +14,7 @@ There are some pre-requisites files that must be downloaded to the root vagrant 
  - [jdk-7u67-linux-x64.gz] (http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u67-oth-JPR)
  -
 
-The creation of cluster can be controlled using a variable in Vagrantfile called 'CREATE_CLUSTER', set its value to 0 or anything other than 1.
+The creation of cluster can be controlled using a variable in Vagrantfile called `CREATE_CLUSTER`, set its value to 0 or anything other than 1.
 
 You directory structure should look like
 ```
@@ -44,7 +44,7 @@ following are the default settings
 - Ambari host gets passwordless ssh access to all other nodes
 - All components from the above downloaded files are copied into yum repository inside the ambari host
 - Ambari server and agents are installed and yum repositories are updated in all hosts.
-- PHD cluster is created by first creating a blueprint from clusterblueprint.json file and then a cluster is created using hosts mapping given in clustertemplate.json. You can modify these files to change component mapping or drop component as per your requirement. All of this is done when final node of the cluster is created successfully.
+- PHD cluster is created by first creating a blueprint from `clusterblueprint.json` file and then a cluster is created using hosts mapping given in `clustertemplate.json`. You can modify these files to change component mapping or drop component as per your requirement. All of this is done when final node of the cluster is created successfully.
 - All nodes are on private network with NAT to host and they need to have access to the internet. 
 
 ###Configurations
