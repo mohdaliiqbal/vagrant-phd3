@@ -9,6 +9,9 @@ require 'set'
 PHD_VM_NAME_PREFIX ="phd"
 PHD_HOSTNAME_PREFIX="phd"
 
+CREATE_CLUSTER=1
+
+
 #You can change this one to suit your interface
 #BRIDGE_INTERFACE ="en0: Wi-Fi (AirPort)"
 
@@ -106,7 +109,7 @@ START_IP=200
       
       ambari.vm.provision "shell" do |s|
           s.path ="prepare_host.sh"
-          s.args =[NUMBER_OF_CLUSTER_NODES, AMBARI_HOSTNAME, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX]
+          s.args =[NUMBER_OF_CLUSTER_NODES, AMBARI_HOSTNAME, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX, CREATE_CLUSTER]
       end
 
 
@@ -148,7 +151,7 @@ START_IP=200
      
       phd_conf.vm.provision "shell" do |s|
         s.path = "prepare_host.sh"
-        s.args = [NUMBER_OF_CLUSTER_NODES, phd_host_name, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX]
+        s.args = [NUMBER_OF_CLUSTER_NODES, phd_host_name, IP_ADDRESS_RANGE, START_IP, PHD_HOSTNAME_PREFIX, CREATE_CLUSTER]
       end 
 	  
       #Fix hostname FQDN
