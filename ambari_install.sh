@@ -49,8 +49,8 @@ if [ ! -f /vagrant/$JDK_FILENAME ]; then
    JDK_FILENAME=jdk-7u67-linux-x64.gz
 fi
 
-cp /vagrant/$JDK_FILENAME /var/lib/ambari-server/resources/$JDK_FILENAME
-chmod 644 /var/lib/ambari-server/resources/$JDK_FILENAME
+cp /vagrant/$JDK_FILENAME /var/lib/ambari-server/resources/jdk-7u67-linux-x64.tar.gz
+chmod 644 /var/lib/ambari-server/resources/jdk-7u67-linux-x64.tar.gz
 
 #copy UnlimitedJCEPolicyJDK7.zip to Ambari resources folder
 cp /vagrant/UnlimitedJCEPolicyJDK7.zip /var/lib/ambari-server/resources/
