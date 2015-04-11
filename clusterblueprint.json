@@ -1,0 +1,199 @@
+{ 
+ 
+ "Blueprints": {
+  "stack_name": "PHD",
+  "stack_version": "3.0",
+  "blueprint_name":"phddemo"
+ },
+ "host_groups": [
+  {
+   "name": "hawq_master",
+   "components": [
+    
+    {
+     "name": "HCAT"
+    },
+    {
+     "name": "PXF"
+    },
+    {
+     "name": "HDFS_CLIENT"
+    },
+    {
+     "name": "HIVE_CLIENT"
+    },
+    {
+     "name": "TEZ_CLIENT"
+    },
+    {
+     "name": "HAWQMASTER"
+    },
+    {
+     "name": "GANGLIA_MONITOR"
+    },
+    {
+     "name": "NAGIOS_SERVER"
+    } , 
+    {
+      "name" : "SECONDARY_NAMENODE"
+    }
+   ],
+   "cardinality": "1"
+  },
+  {
+   "name": "hive_yarn",
+   "components": [
+    {
+     "name": "ZOOKEEPER_CLIENT"
+    },
+    {
+     "name": "PIG"
+    },
+    {
+     "name": "HISTORYSERVER"
+    },
+    {
+     "name": "HIVE_SERVER"
+    },
+    {
+     "name": "HCAT"
+    },
+    {
+     "name": "PXF"
+    },
+    {
+     "name": "HIVE_METASTORE"
+    },
+    {
+     "name": "APP_TIMELINE_SERVER"
+    },
+    {
+     "name": "HAWQSEGMENT"
+    },
+    {
+     "name": "NODEMANAGER"
+    },
+    {
+     "name": "HDFS_CLIENT"
+    },
+    {
+     "name": "HIVE_CLIENT"
+    },
+    {
+     "name": "DATANODE"
+    },
+    {
+     "name": "MYSQL_SERVER"
+    },
+    {
+     "name": "GANGLIA_MONITOR"
+    },
+    {
+     "name": "WEBHCAT_SERVER"
+    },
+    {
+     "name": "RESOURCEMANAGER"
+    }
+   ],
+   "cardinality": "1"
+  },
+  {
+   "name": "master",
+   "components": [
+    {
+     "name": "ZOOKEEPER_SERVER"
+    },
+    {
+     "name": "NAMENODE"
+    },
+    {
+     "name": "HCAT"
+    },
+    {
+     "name": "KNOX_GATEWAY"
+    },
+    {
+     "name": "PXF"
+    },
+    {
+     "name": "GANGLIA_SERVER"
+    },
+    {
+     "name": "HAWQSEGMENT"
+    },
+    {
+     "name": "HDFS_CLIENT"
+    },
+    {
+     "name": "HIVE_CLIENT"
+    },
+    {
+     "name": "NODEMANAGER"
+    },
+    {
+     "name": "DATANODE"
+    },
+    {
+     "name": "GANGLIA_MONITOR"
+    },
+        {
+          "name" : "HAWQSTANDBY"
+        }
+   ],
+   "cardinality": "1"
+  }
+ ],
+ "configurations": [
+  {
+   "nagios-env": {
+    "nagios_contact": "admin@sample.com"
+   }
+  },
+    {
+      "hadoop-env" : {
+        "dtnode_heapsize" : "512m",
+        "hadoop_heapsize" : "512",
+        "namenode_heapsize" : "768m",
+        "namenode_opt_maxnewsize" : "200m",
+        "namenode_opt_maxpermsize" : "256m",
+        "namenode_opt_newsize" : "100m",
+       "namenode_opt_permsize" : "128m"
+      }
+    },
+  {
+   "yarn-site" : {
+    "yarn.nodemanager.resource.memory-mb" : "512",
+    "yarn.scheduler.maximum-allocation-mb" : "512",
+    "yarn.scheduler.minimum-allocation-mb" : "256",
+    "yarn.nodemanager.resource.cpu-vcores" : "2"
+   }
+  },
+    {
+      "tez-site" : {
+       
+        "tez.am.resource.memory.mb" : "512",
+        "tez.task.resource.memory.mb" : "512"
+      }
+    },
+  {
+   "mapred-site" : {
+        "mapreduce.map.java.opts" : "-Xmx200m",
+        "mapreduce.map.memory.mb" : "256",
+        "mapreduce.reduce.java.opts" : "-Xmx400m",
+        "mapreduce.reduce.memory.mb" : "512",
+        "mapreduce.task.timeout" : "300000",
+        "yarn.app.mapreduce.am.command-opts" : "-Xmx400m",
+        "yarn.app.mapreduce.am.resource.mb" : "512",
+        "yarn.app.mapreduce.am.staging-dir" : "/user"
+      }
+  },
+   {
+      "hdfs-site" : {
+        "dfs.blocksize" : "33554432",
+        "dfs.replication" : "1",
+        "dfs.replication.max" : "3"
+      }
+    }
+  
+ ]
+}
