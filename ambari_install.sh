@@ -3,11 +3,13 @@
 # Install Oracle Java 7 on AMBARI (e.g Admin) node.
 #sudo yum -y install $JAVA_RPM_PATH ; java -version
 sudo yum -y install httpd
+
+mkdir -p /vagrant/tmp
  
 chmod a+x /vagrant/generate-rsa-keys.sh
 /vagrant/generate-rsa-keys.sh
-cp -f /vagrant/id_rsa /root/.ssh/id_rsa
-cp -f /vagrant/id_rsa /root/.ssh/id_rsa.pub
+cp -f /vagrant/tmp/id_rsa /root/.ssh/id_rsa
+cp -f /vagrant/tmp/id_rsa /root/.ssh/id_rsa.pub
 
 service httpd start
 
@@ -68,3 +70,9 @@ ambari-server status
 #http://ambari.localdomain/PADS-1.3.0.0
 #http://ambari.localdomain/PHD-UTILS-1.1.0.20
 
+#Exporting yum ambari repository files
+cp -f /etc/yum.repos.d/ambari.repo /vagrant/tmp
+cp -f /etc/yum.repos.d/PHD-3.0.0.0.repo /vagrant/tmp
+cp -f /etc/yum.repos.d/PADS-1.3.0.0.repo /vagrant/tmp
+cp -f /etc/yum.repos.d/PHD-UTILS-1.1.0.20.repo /tmp
+cp -f /etc/yum.repos.d/hawq-plugin-phd-1.0-57.repo /vagrant/tmp
