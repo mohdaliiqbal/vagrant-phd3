@@ -53,6 +53,8 @@ chmod 644 /var/lib/ambari-server/resources/UnlimitedJCEPolicyJDK7.zip
 #Run Ambari setup
 ambari-server setup -s
 
+sleep 10
+
 #Start ambari server
 ambari-server start
 
