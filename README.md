@@ -1,6 +1,6 @@
 # Vagrant PHD 3.0
 
-Vagrant based Pivotal HD 3.0 cluster setup. The vagrant file and helper scripts sets up a 3 node cluster and an ambari host with all the required steps as mentioned in the Pivotal HD installation guide. The project is inspired by an existing [Vagrant PHD] (https://github.com/tzolov/vagrant-pivotalhd) project created by Christian Tzolov from Pivotal.
+Vagrant based Pivotal HD 3.0 cluster setup. The vagrant file and helper scripts sets up a 3 node cluster and an ambari host with all the required steps as mentioned in the Pivotal HD installation guide. By default it provisions a PHD cluster with HDFS, YARN, HAWQ, Hive, Nagios, Ganglia, Knox components. You can modify the placement of the component using the blueprint.json, and clustertemplate.json files. The project is inspired by an existing [Vagrant PHD] (https://github.com/tzolov/vagrant-pivotalhd) project created by Christian Tzolov from Pivotal.
 
 
 There are some pre-requisites files that must be downloaded to the root vagrant directory. Following is the list of files that must be present in the same directory as the Vagrantfile. You can get some of these files from http://network.pivotal.io. Jdk and UnlimitedJCEPolicyJDK7.zip can be found in Oralce website. More details are available at http://pivotalhd.docs.pivotal.io/docs/install-ambari.html
@@ -14,7 +14,7 @@ There are some pre-requisites files that must be downloaded to the root vagrant 
  - [jdk-7u67-linux-x64.gz] (http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u67-oth-JPR)
  -
 
-Currently I have not installed HAWQ component using this setup. 
+The creation of cluster can be controlled using a variable in Vagrantfile called 'CREATE_CLUSTER', set its value to 0 or anything other than 1.
 
 You directory structure should look like
 ```
@@ -30,7 +30,7 @@ Once you've downloaded the above files and cloned the git the project to the sam
 
 `vagrant up` 
 
-This will create 4 VMs 
+This will create 4 VMs and create a PHD cluster
 
 1. Ambari x 1
 2. Pivotal HD x 3 
@@ -55,7 +55,7 @@ following are the default settings
 
 Once the provisioning is completed, you can visit [Ambari Server UI](http://10.211.55.200:8080/) and create the Hadoop cluster. 
 
-###URLs that you will need for Ambari
+###URLs that you will need for Ambari, if you did not select to create the cluster.
 ```
 http://ambari.localdomain/PHD-3.0.0.0
 http://ambari.localdomain/hawq-plugin-phd-1.0-57
