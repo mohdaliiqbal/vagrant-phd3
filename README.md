@@ -17,7 +17,7 @@ There are some pre-requisites files that must be downloaded to the root vagrant 
   
 The creation of cluster can be controlled using a variable in Vagrantfile called `CREATE_CLUSTER`, set its value to 0 or anything other than 1.
 
-You directory structure should look like
+Your directory structure should look like
 ```
 /vagrant-phd3
 |- <all above mentioned files>
