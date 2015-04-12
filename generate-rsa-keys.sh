@@ -7,7 +7,7 @@ spawn ssh-keygen -t rsa
 expect {
 "Enter file in which to save the key (/root/.ssh/id_rsa):"
 {
-send -- "/vagrant/id_rsa\r"
+send -- "/vagrant/tmp/id_rsa\r"
 exp_continue
 }
 "Enter passphrase (empty for no passphrase):"

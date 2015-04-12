@@ -57,10 +57,10 @@ then
     cat /vagrant/tmp/id_rsa.pub | cat >> ~/.ssh/authorized_keys
     #Exporting yum ambari repository files
     cp -f /vagrant/tmp/ambari.repo  /etc/yum.repos.d
-    #cp -f /vagrant/tmp/PHD-3.0.0.0.repo /etc/yum.repos.d
-    #cp -f /vagrant/tmp/PADS-1.3.0.0.repo /etc/yum.repos.d
-    #cp -f /vagrant/tmp/PHD-UTILS-1.1.0.20.repo /etc/yum.repos.d
-    #cp -f /vagrant/tmp/hawq-plugin-phd-1.0-57.repo /etc/yum.repos.d
+    cp -f /vagrant/tmp/PHD-3.0.0.0.repo /etc/yum.repos.d
+    cp -f /vagrant/tmp/PADS-1.3.0.0.repo /etc/yum.repos.d
+    cp -f /vagrant/tmp/PHD-UTILS-1.1.0.20.repo /etc/yum.repos.d
+    cp -f /vagrant/tmp/hawq-plugin-phd-1.0-57.repo /etc/yum.repos.d
     yum -y install ambari-agent
     sed -i '16s/.*/hostname=ambari.localdomain/' /etc/ambari-agent/conf/ambari-agent.ini
     ambari-agent start 

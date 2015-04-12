@@ -16,12 +16,15 @@ CREATE_CLUSTER=1
 #BRIDGE_INTERFACE ="en0: Wi-Fi (AirPort)"
 
 
-# Node(s) to be used as a master. Convention is: 'phd<Number>.localdomain'. Exactly One master node must be provided
+# Node(s) to be used as a master - default '<Hostname prefix>1.localdomain'. Exactly One master node must be provided
 MASTER = [PHD_HOSTNAME_PREFIX+"1.localdomain"]
 
-# Node(s) to be used as a Workers. Convention is: 'phd<Number>.localdomain'. At least one worker node is required
+# Node(s) to be used as a Workers. Convention is: 'phd<Index>.localdomain'. At least one worker node is required
 # The master node can be reused as a worker. 
-WORKERS = [PHD_HOSTNAME_PREFIX+"2.localdomain", PHD_HOSTNAME_PREFIX+"3.localdomain"]
+
+# The total number of nodes in the cluster
+NUMBER_OF_CLUSTER_NODES = 2
+
 
 
 #It is important that this value matches the HAWQ plugin you want to install. Default value is the one released originally
@@ -74,8 +77,6 @@ START_IP=200
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 
- # Compute the total number of nodes in the cluster 	    
-  NUMBER_OF_CLUSTER_NODES = (MASTER + WORKERS).uniq.size
 
  Vagrant.configure(2) do |config|
   # The most common configuration options are documented and commented below.

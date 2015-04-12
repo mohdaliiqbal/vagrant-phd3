@@ -1,6 +1,6 @@
 {
   "blueprint":"phddemo",
-  "default_password":"super-secret-password",
+  "default_password":"secret-password",
   "host_groups": [
   {
    "name": "master",
@@ -11,20 +11,11 @@
   ]
   },
   {
-   "name": "hive_yarn",
+   "name": "slave_node",
    "hosts":
    [
     {
      "fqdn":"phd2.localdomain"
-    }
-   ]
-  },
-  {
-   "name": "hawq_master",
-   "hosts":
-   [
-    {
-     "fqdn":"phd3.localdomain"
     }
    ]
   }
