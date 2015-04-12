@@ -7,66 +7,27 @@
  },
  "host_groups": [
   {
-   "name": "hawq_master",
+   "name": "slave_node",
    "components": [
     
-    {
-     "name": "HCAT"
-    },
-    {
-     "name": "PXF"
-    },
     {
      "name": "HDFS_CLIENT"
     },
     {
-     "name": "HIVE_CLIENT"
+     "name": "ZOOKEEPER_CLIENT"
     },
     {
-     "name": "TEZ_CLIENT"
-    },
-    {
-     "name": "HAWQMASTER"
+     "name": "PXF"
     },
     {
      "name": "GANGLIA_MONITOR"
     },
     {
      "name": "NAGIOS_SERVER"
-    } , 
+    }, 
     {
       "name" : "SECONDARY_NAMENODE"
-    }
-   ],
-   "cardinality": "1"
-  },
-  {
-   "name": "hive_yarn",
-   "components": [
-    {
-     "name": "ZOOKEEPER_CLIENT"
-    },
-    {
-     "name": "PIG"
-    },
-    {
-     "name": "HISTORYSERVER"
-    },
-    {
-     "name": "HIVE_SERVER"
-    },
-    {
-     "name": "HCAT"
-    },
-    {
-     "name": "PXF"
-    },
-    {
-     "name": "HIVE_METASTORE"
-    },
-    {
-     "name": "APP_TIMELINE_SERVER"
-    },
+    },    
     {
      "name": "HAWQSEGMENT"
     },
@@ -74,25 +35,13 @@
      "name": "NODEMANAGER"
     },
     {
-     "name": "HDFS_CLIENT"
-    },
-    {
-     "name": "HIVE_CLIENT"
-    },
-    {
      "name": "DATANODE"
-    },
-    {
-     "name": "MYSQL_SERVER"
     },
     {
      "name": "GANGLIA_MONITOR"
     },
     {
-     "name": "WEBHCAT_SERVER"
-    },
-    {
-     "name": "RESOURCEMANAGER"
+      "name" : "HAWQSTANDBY"
     }
    ],
    "cardinality": "1"
@@ -100,17 +49,27 @@
   {
    "name": "master",
    "components": [
+    
+    {
+     "name": "HAWQMASTER"
+    },
     {
      "name": "ZOOKEEPER_SERVER"
+    },
+    {
+     "name": "RESOURCEMANAGER"
+    },
+    {
+     "name": "HISTORYSERVER"
+    },
+    {
+     "name": "APP_TIMELINE_SERVER"
     },
     {
      "name": "NAMENODE"
     },
     {
-     "name": "HCAT"
-    },
-    {
-     "name": "KNOX_GATEWAY"
+     "name": "HDFS_CLIENT"
     },
     {
      "name": "PXF"
@@ -119,26 +78,8 @@
      "name": "GANGLIA_SERVER"
     },
     {
-     "name": "HAWQSEGMENT"
-    },
-    {
-     "name": "HDFS_CLIENT"
-    },
-    {
-     "name": "HIVE_CLIENT"
-    },
-    {
-     "name": "NODEMANAGER"
-    },
-    {
-     "name": "DATANODE"
-    },
-    {
      "name": "GANGLIA_MONITOR"
-    },
-        {
-          "name" : "HAWQSTANDBY"
-        }
+    }
    ],
    "cardinality": "1"
   }
@@ -168,13 +109,6 @@
     "yarn.nodemanager.resource.cpu-vcores" : "2"
    }
   },
-    {
-      "tez-site" : {
-       
-        "tez.am.resource.memory.mb" : "512",
-        "tez.task.resource.memory.mb" : "512"
-      }
-    },
   {
    "mapred-site" : {
         "mapreduce.map.java.opts" : "-Xmx200m",
