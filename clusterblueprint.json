@@ -97,7 +97,7 @@
         "namenode_heapsize" : "768m",
         "namenode_opt_maxnewsize" : "200m",
         "namenode_opt_maxpermsize" : "256m",
-        "namenode_opt_newsize" : "100m",
+        "namenode_opt_newsize" : "200m",
        "namenode_opt_permsize" : "128m"
       }
     },

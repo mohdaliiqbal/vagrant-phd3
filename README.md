@@ -2,6 +2,8 @@
 
 Vagrant based Pivotal HD 3.0 cluster setup. The vagrant file and helper scripts sets up a 2 node cluster and an ambari host with all the required steps as mentioned in the Pivotal HD installation guide. By default it provisions a PHD cluster with HDFS, YARN, HAWQ, Nagios, and Ganglia components. You can add/modify the placement of the component using the clusterblueprint.json, and clustertemplate.json files. The project is inspired by an existing [Vagrant PHD] (https://github.com/tzolov/vagrant-pivotalhd) project created by Christian Tzolov from Pivotal.
 
+***Its import that you read the vm.overcommit_memory issue under the tips and diagonstic section*** 
+
 
 There are some pre-requisites files that must be downloaded to the root vagrant directory. Following is the list of files that must be present in the same directory as the Vagrantfile. You can get some of these files from http://network.pivotal.io. Jdk and UnlimitedJCEPolicyJDK7.zip can be found in Oralce website. More details are available at http://pivotalhd.docs.pivotal.io/docs/install-ambari.html
 
@@ -15,7 +17,7 @@ There are some pre-requisites files that must be downloaded to the root vagrant 
   
 The creation of cluster can be controlled using a variable in Vagrantfile called `CREATE_CLUSTER`, set its value to 0 or anything other than 1.
 
-You directory structure should look like
+Your directory structure should look like
 ```
 /vagrant-phd3
 |- <all above mentioned files>
@@ -67,9 +69,25 @@ http://ambari.localdomain/PHD-UTILS-1.1.0.20
 
 ```
 
-###Some tips 
-- Since this is supposed to be running in a Laptop for development purposes, keep your cluster footprint to minimum no. of components. If you're not going to benefit from any of the OOB components e.g. *HBase*, *Nagios* then don't include them when you're creating a cluster in Ambari. 
-- To make a psuedo-singlenode PHD VM, tweek settings to have only `MASTER` array and keep `WORKERS` array empty. It should work, I have not tried it. Then from Ambari VM use only MASTER to install all required components
-- Keep your Zookeeper instances to minimum.
+###Tips & Diagonostics 
+If you see services failing to start and the problem is JVM out of memory then you may need to set vm.overcommit_memory = 0 in sysctl.conf.  Unfortunately this is not easy to automate because HAWQ plugin rpm distributed by Pivotal sets this value to 2 during cluster creation, so once cluster is created you may need to fix this value to start services successfully. Following are the steps to change this configuration. Following steps need to be repeated for every node in the cluster (PHD1, PHD2, PHD3)
+
+```
+vagrant ssh phd1
+sudo vi /etc/sysctl.conf
+```
+- Change the line ```vm.overcommit_memory = 2``` to ```vm.overcommit_memory = 0```
+
+- Save the file and run the following command
+
+```
+sudo sysctl -p
+```
 
 
+###Youtube Vdo
+You can watch the VDO for this project from the link below
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=ZSjygc7V2dM
+" target="_blank"><img src="http://img.youtube.com/vi/ZSjygc7V2dM/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
