@@ -82,5 +82,5 @@ ambari-server status
 cp -f /etc/yum.repos.d/ambari.repo /vagrant/tmp
 cp -f /etc/yum.repos.d/PHD-3.0.0.0.repo /vagrant/tmp
 cp -f /etc/yum.repos.d/PADS-1.3.0.0.repo /vagrant/tmp
-cp -f /etc/yum.repos.d/PHD-UTILS-1.1.0.20.repo /tmp
+cp -f /etc/yum.repos.d/PHD-UTILS-1.1.0.20.repo /vagrant/tmp
 cp -f /etc/yum.repos.d/hawq-plugin-phd-1.0-57.repo /vagrant/tmp
