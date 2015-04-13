@@ -42,8 +42,8 @@ This will create 3 VMs and create a PHD cluster
 
 ###Default Settings
 following are the default settings
-- Default IP 10.211.55.200 for ambari - hostname ambari.localdomain
-- Default IP 10.211.55.201, 10.211.55.202 for PHD nodes - phd1.localdomain, phd2.localdomain respectively
+- For ambari - hostname ambari.localdomain
+- PHD nodes - phd1.localdomain, phd2.localdomain respectively
 - Ambari host becomes the local yum repository
 - Ambari host gets passwordless ssh access to all other nodes
 - All components from the above downloaded files are copied into yum repository inside the ambari host
@@ -53,12 +53,12 @@ following are the default settings
 
 ###Configurations
 - Ambari server is 1GB. You can change this value by setting ```AMBARI_MEMORY_MB``` variable
-- PHD nodes are 2GB each. You can increase this value by setting ```MASTER_PHD_MEMORY_MB```, and ```WORKER_PHD_MEMORY_MB``` variables
+- PHD nodes are 3GB for MASTER and 2GB for slave. You can increase this value by setting ```MASTER_PHD_MEMORY_MB```, and ```WORKER_PHD_MEMORY_MB``` variables
 - Default IP addresses can be controlled using ```IP_ADDRESS_RANGE``` and ``START_IP`` variable. IPs are created concatinating ```IP_ADDRESS_RANGE+START_IP``` for Ambari and ``IP_ADDRESS_RANGE+(START_IP+Node index)`` for PHD nodes 
 - Default naming of VM and hostname of the nodes can be changed using `PHD_VM_NAME`, and `PHD_HOSTNAME_PREFIX`. You need to make relevant changes in `WORKERS` and `MASTER` arrays (i will fix this later).
 - Default number of nodes can be controlled by increasing entries in `WORKERS` array, so for e.g. you want 4 worker nodes then you must provide node names `PHD_HOSTNAME_PREFIX+"2.localdomain"`, ... , `PHD_HOSTNAME_PREFIX+"5.localdomain"`
 
-Once the provisioning is completed, you can visit [Ambari Server UI](http://10.211.55.200:8080/) and create the Hadoop cluster. 
+Once the provisioning is completed, you can visit [Ambari Server UI](http://192.168.55.200:8080/) and create the Hadoop cluster. 
 
 ###How to know if everything went fine?
 If you have ran it with default settings, then after the provisioning is completed you should see a dashboard in Ambari server and the top bar should indicate you that some operations are in progress. These operations are for creation of the cluster. If you see a Wizard to create cluster then there must be something wrong, by default you should not see wizard unless you have manually edited the value for ``CREATE_CLUSTER`` variable.
