@@ -60,7 +60,10 @@ following are the default settings
 
 Once the provisioning is completed, you can visit [Ambari Server UI](http://10.211.55.200:8080/) and create the Hadoop cluster. 
 
-###URLs that you will need for Ambari, if you did not select to create the cluster.
+###How to know if everything went fine?
+If you have ran it with default settings, then after the provisioning is completed you should see a dashboard in Ambari server and the top bar should indicate you that some operations are in progress. These operations are for creation of the cluster. If you see a Wizard to create cluster then there must be something wrong, by default you should not see wizard unless you have manually edited the value for ``CREATE_CLUSTER`` variable.
+
+***URLs that you will need for Ambari, if you did not select to create the cluster***
 ```
 http://ambari.localdomain/PHD-3.0.0.0
 http://ambari.localdomain/hawq-plugin-phd-1.0-57
