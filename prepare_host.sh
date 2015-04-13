@@ -70,6 +70,8 @@ fi
 if [[ $HOSTNAME == *$NUMBER_OF_CLUSTER_NODES* ]]
 then    #final node in the cluster
     echo "Creating PHD cluster....."
+    #adding sleep for ambari-agent to get registered successfully before we launch create cluster.
+    sleep 10
     cd /vagrant
     echo $CREATE_CLUSTER "- Cluster create.."
     if [[ $CREATE_CLUSTER == 1 ]]; then
