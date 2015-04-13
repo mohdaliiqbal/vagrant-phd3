@@ -89,7 +89,7 @@ sudo sysctl -p
 
 
 ###Youtube Vdo
-You can watch the VDO for this project from the link below
+You can watch the VDO for this project from the link below. This vdo is a bit out dated, it tells you to create cluster using Ambari, however, the latest script does the cluster creation for you automatically, so you can skip the Ambari steps to create cluster.
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=ZSjygc7V2dM
 " target="_blank"><img src="http://img.youtube.com/vi/ZSjygc7V2dM/0.jpg" 
