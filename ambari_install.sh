@@ -21,8 +21,12 @@ chmod a+rx /staging
 
 for var in "$@" 
 do
-
-tar -xzf /vagrant/$var -C /staging/
+ if [[ "$var" == *.gz ]]
+ then
+   tar -xzf /vagrant/$var -C /staging/
+ else
+   tar -xf /vagrant/$var -C /staging/
+ fi
 
 #filename=$(basename "$var")
 #filename="${filename%.*}"
