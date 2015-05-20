@@ -1,7 +1,3 @@
-# 주의사항
-vagrant up 실행 후에 ambari UI에서 HAWQ를 제외하고 hadoop을 설치하십시오.
-그리고 vm의 sysctl 설정을 변경한 후 HAWQ를 마져 설치하십시오.
-
 # Vagrant PHD 3.0
 
 Vagrant based Pivotal HD 3.0 cluster setup. The vagrant file and helper scripts sets up a 2 node cluster and an ambari host with all the required steps as mentioned in the Pivotal HD installation guide. By default it provisions a PHD cluster with HDFS, YARN, HAWQ, Nagios, and Ganglia components. You can add/modify the placement of the component using the clusterblueprint.json, and clustertemplate.json files. The project is inspired by an existing [Vagrant PHD] (https://github.com/tzolov/vagrant-pivotalhd) project created by Christian Tzolov from Pivotal.
