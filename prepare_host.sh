@@ -57,10 +57,10 @@ then
     cat /vagrant/tmp/id_rsa.pub | cat >> ~/.ssh/authorized_keys
     #Exporting yum ambari repository files
     cp -f /vagrant/tmp/ambari.repo  /etc/yum.repos.d
-    cp -f /vagrant/tmp/PHD-3.0.0.0.repo /etc/yum.repos.d
-    cp -f /vagrant/tmp/PADS-1.3.0.0.repo /etc/yum.repos.d
+    cp -f /vagrant/tmp/PHD-3.0.1.0.repo /etc/yum.repos.d
+    cp -f /vagrant/tmp/PADS.repo /etc/yum.repos.d
     cp -f /vagrant/tmp/PHD-UTILS-1.1.0.20.repo /etc/yum.repos.d
-    cp -f /vagrant/tmp/hawq-plugin-phd-1.0-57.repo /etc/yum.repos.d
+    cp -f /vagrant/tmp/hawq-plugin-phd-1.3.1.repo /etc/yum.repos.d
     yum -y install ambari-agent
     sed -i '16s/.*/hostname=ambari.localdomain/' /etc/ambari-agent/conf/ambari-agent.ini
     ambari-agent start 
@@ -76,7 +76,7 @@ then    #final node in the cluster
     echo $CREATE_CLUSTER "- Cluster create.."
     if [[ $CREATE_CLUSTER == 1 ]]; then
     #Set Repository URL for PHD-3.0 in Ambari
-      curl -i  -H "X-Requested-By: alim20"  -H "Authorization: Basic YWRtaW46YWRtaW4=" -X  PUT "http://ambari.localdomain:8080/api/v1/stacks/PHD/versions/3.0/operating_systems/redhat6/repositories/PHD-3.0" --data '{  "Repositories" : { "base_url" : "http://ambari.localdomain/PHD-3.0.0.0", "verify_base_url" : true , "default_base_url":"http://ambari.localdomain/PHD-3.0.0.0", "latest_base_url" : "http://ambari.localdomain/PHD-3.0.0.0"} }'
+      curl -i  -H "X-Requested-By: alim20"  -H "Authorization: Basic YWRtaW46YWRtaW4=" -X  PUT "http://ambari.localdomain:8080/api/v1/stacks/PHD/versions/3.0/operating_systems/redhat6/repositories/PHD-3.0" --data '{  "Repositories" : { "base_url" : "http://ambari.localdomain/PHD-3.0.1.0", "verify_base_url" : true , "default_base_url":"http://ambari.localdomain/PHD-3.0.1.0", "latest_base_url" : "http://ambari.localdomain/PHD-3.0.1.0"} }'
     
     #SET Repository for PHD-UTILS URL in Ambari
     curl -i  -H "X-Requested-By: alim20"  -H "Authorization: Basic YWRtaW46YWRtaW4=" -X  PUT "http://ambari.localdomain:8080/api/v1/stacks/PHD/versions/3.0/operating_systems/redhat6/repositories/PHD-UTILS-1.1.0.20" --data '{  "Repositories" : { "base_url" : "http://ambari.localdomain/PHD-UTILS-1.1.0.20", "verify_base_url" : true , "default_base_url":"http://ambari.localdomain/PHD-UTILS-1.1.0.20", "latest_base_url" : "http://ambari.localdomain/PHD-UTILS-1.1.0.20"} }'

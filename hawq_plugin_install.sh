@@ -32,7 +32,7 @@ then
 fi
 
 
-rpm -ivh /staging/$filename/$original_filename
+rpm -ivh /staging/hawq-plugin-phd-1.3.1/$original_filename
 
 ambari-server restart
 

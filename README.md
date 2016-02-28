@@ -7,12 +7,12 @@ Vagrant based Pivotal HD 3.0 cluster setup. The vagrant file and helper scripts 
 
 There are some pre-requisites files that must be downloaded to the root vagrant directory. Following is the list of files that must be present in the same directory as the Vagrantfile. You can get some of these files from http://network.pivotal.io. Jdk and UnlimitedJCEPolicyJDK7.zip can be found in Oralce website. More details are available at http://pivotalhd.docs.pivotal.io/docs/install-ambari.html
 
- - [AMBARI-1.7.1-87-centos6.tar](https://network.pivotal.io/products/pivotal-hd)
- - [PADS-1.3.0.0-12954.tar](https://network.pivotal.io/products/pivotal-hawq)
- - [PHD-3.0.0.0-249-centos6.tar](https://network.pivotal.io/products/pivotal-hd)
+ - [AMBARI-1.7.1-88-centos6.tar](https://network.pivotal.io/products/pivotal-hd)
+ - [PADS-1.3.1.1-19631-rhel5_x86_64.tar](https://network.pivotal.io/products/pivotal-hawq)
+ - [PHD-3.0.1.0-1-centos6.tar](https://network.pivotal.io/products/pivotal-hd)
  - [PHD-UTILS-1.1.0.20-centos6.tar](https://network.pivotal.io/products/pivotal-hd)
  - [UnlimitedJCEPolicyJDK7.zip](http://www.oracle.com/technetwork/jp/java/javase/downloads/jce-7-download-432124.html)
- - [hawq-plugin-phd-1.0-57.tar.gz](https://network.pivotal.io/products/pivotal-hawq)
+ - [hawq-plugin-phd-1.3.1-179.tar.gz](https://network.pivotal.io/products/pivotal-hawq)
  - [jdk-7u67-linux-x64.tar.gz](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u67-oth-JPR)
   
 The creation of cluster can be controlled using a variable in Vagrantfile called `CREATE_CLUSTER`, set its value to 0 or anything other than 1.
